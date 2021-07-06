@@ -1,0 +1,57 @@
+<html>
+<head>
+<title>Python Flask Upload and display image</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />        
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+<body>
+<p><h1 align="center">UI to capture and display image</h1></p>
+<div class="container" >
+<div class="row" >
+<h2>Select a file to upload</h2>
+  <p>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+  </p>
+    <form method="post" action="/" enctype="multipart/form-data">
+      <dl>
+        <p>
+          <input type="file" name="file"  autocomplete="off" required>
+        </p>
+      </dl>
+      <p>
+        <input type="submit" value="Submit" class="btn btn-info">
+      </p>
+    </form>
+    <hr>
+    <h4 style="text-align: center; ">RESULT</h4>
+    <div class="row no-gutters">
+       <div class="col-md-6 no-gutters" style="text-align: center;">
+          <div class="left">
+            {% if filename %}
+          <img src="{{ url_for('display_image', filename=filename) }}" style="max-width: 400px;max-height: 400px;">
+          {% endif %}
+        </div>
+        </div>
+    
+      <div class="col-md-6  no-gutters" >
+        <div class="right mt-1" style="white-space: pre-line; overflow: hidden;">
+          <div style="width:500px;height:50px;border:1px solid #000;">name</div><br>
+          <div style="width:500px;height:50px;border:1px solid #000;">phone number</div><br>
+          <div style="width:500px;height:100px;border:1px solid #000;overflow: auto;">address
+          </div><br>
+          <div style="width:500px;height:50px;border:1px solid #000;">pincode</div><br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html> 
